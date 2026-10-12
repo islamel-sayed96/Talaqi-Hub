@@ -9,15 +9,15 @@ export const SITE = {
   tagline: { ar: "وكالة تسويق رقمي وإنتاج إبداعي", en: "Digital marketing & creative production agency" },
   url: "https://example.com", // دومين الموقع بعد الرفع
 
-  // رقم الواتساب بالصيغة الدولية بدون + (مثال مصر: 201001234567)
-  whatsapp: "201000000000",
+  // رقم الواتساب بالصيغة الدولية بدون + (مثال الإمارات: 971501234567)
+  whatsapp: "971500000000",
   email: "hello@example.com",
-  phone: "+20 100 000 0000",
-  address: { ar: "القاهرة، مصر", en: "Cairo, Egypt" },
+  phone: "+971 50 000 0000",
+  address: { ar: "الإمارات العربية المتحدة", en: "United Arab Emirates" },
   hours: { ar: "السبت – الخميس، 10 ص – 7 م", en: "Sat – Thu, 10 AM – 7 PM" },
 
-  // عملة الباقات
-  currency: { ar: "ج.م", en: "EGP" },
+  // عملة الأسعار (درهم إماراتي)
+  currency: { ar: "د.إ", en: "AED" },
 
   social: {
     facebook: "#",
@@ -36,8 +36,9 @@ export const DEFAULT_WA_TEXT: Record<Locale, string> = {
   en: "Hi, I'd like to ask about your services",
 };
 
+// Arabic: "499 د.إ" — English: "AED 499"
 export const formatPrice = (n: number, locale: Locale) =>
-  `${n.toLocaleString("en-US")} ${SITE.currency[locale]}`;
+  locale === "en" ? `${SITE.currency.en} ${n.toLocaleString("en-US")}` : `${n.toLocaleString("en-US")} ${SITE.currency.ar}`;
 
 /** Main navigation: [key in UI.nav, path without locale prefix]. */
 export const NAV = [

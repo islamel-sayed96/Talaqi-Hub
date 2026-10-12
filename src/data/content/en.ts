@@ -99,33 +99,33 @@ export const en: Content = {
     {
       id: "social", icon: "megaphone", label: "Social Media",
       packages: [
-        { name: "Starter", price: 7500, period: "/ month", desc: "For brands just getting started.", features: ["2 platforms (Facebook + Instagram)", "12 posts per month", "8 stories", "Copywriting & design", "Comment replies", "Monthly report"] },
-        { name: "Growth", price: 14000, period: "/ month", popular: true, desc: "The right fit for most businesses.", features: ["3 platforms", "20 posts + 4 reels per month", "16 stories", "Paid ads management", "Inbox & comment management", "Performance report & plan"] },
-        { name: "Pro", price: 24000, period: "/ month", desc: "Strong presence, fast growth.", features: ["4 platforms (+ TikTok)", "30 posts + 8 reels", "Monthly photo shoot", "Meta & TikTok ads", "Dedicated account manager", "Monthly strategy meeting"] },
+        { name: "Starter", price: 1500, period: "/ month", desc: "For brands just getting started.", features: ["2 platforms (Facebook + Instagram)", "12 posts per month", "8 stories", "Copywriting & design", "Comment replies", "Monthly report"] },
+        { name: "Growth", price: 2800, period: "/ month", popular: true, desc: "The right fit for most businesses.", features: ["3 platforms", "20 posts + 4 reels per month", "16 stories", "Paid ads management", "Inbox & comment management", "Performance report & plan"] },
+        { name: "Pro", price: 4500, period: "/ month", desc: "Strong presence, fast growth.", features: ["4 platforms (+ TikTok)", "30 posts + 8 reels", "Monthly photo shoot", "Meta & TikTok ads", "Dedicated account manager", "Monthly strategy meeting"] },
       ],
     },
     {
       id: "web", icon: "code", label: "Websites & Stores",
       packages: [
-        { name: "Landing Page", price: 9000, desc: "One page that sells a product or service.", features: ["Custom design", "Mobile-friendly", "WhatsApp button & contact form", "Pixel & Analytics setup", "Delivered in 7 days"] },
-        { name: "Business Website", price: 22000, popular: true, desc: "A complete website for your company.", features: ["Up to 8 pages", "Arabic & English", "Content dashboard", "Basic SEO", "Domain & hosting for a year", "3 months of support"] },
-        { name: "Online Store", price: 38000, desc: "A store ready to sell online.", features: ["Unlimited products", "Payment & shipping gateways", "Product page design", "Coupons & offers", "Store management training", "6 months of support"] },
+        { name: "Landing Page", price: 1500, desc: "One page that sells a product or service.", features: ["Custom design", "Mobile-friendly", "WhatsApp button & contact form", "Pixel & Analytics setup", "Delivered in 7 days"] },
+        { name: "Business Website", price: 3500, popular: true, desc: "A complete website for your company.", features: ["Up to 8 pages", "Arabic & English", "Content dashboard", "Basic SEO", "Domain & hosting for a year", "3 months of support"] },
+        { name: "Online Store", price: 6500, desc: "A store ready to sell online.", features: ["Unlimited products", "Payment & shipping gateways", "Product page design", "Coupons & offers", "Store management training", "6 months of support"] },
       ],
     },
     {
       id: "branding", icon: "pen", label: "Branding",
       packages: [
-        { name: "Logo", price: 5000, desc: "A professional logo for your brand.", features: ["3 initial concepts", "3 revision rounds", "All formats (SVG, PNG, PDF)", "Color and black & white versions"] },
-        { name: "Full Identity", price: 12000, popular: true, desc: "Everything your brand needs to look the part.", features: ["Logo", "Colors & typography", "Short brand guide", "Business cards & stationery", "Social media templates"] },
-        { name: "Brand 360", price: 25000, desc: "Building a brand from scratch.", features: ["Naming & slogan", "Brand strategy", "Full visual identity", "Packaging design", "Detailed brand book"] },
+        { name: "Logo", price: 800, desc: "A professional logo for your brand.", features: ["3 initial concepts", "3 revision rounds", "All formats (SVG, PNG, PDF)", "Color and black & white versions"] },
+        { name: "Full Identity", price: 2000, popular: true, desc: "Everything your brand needs to look the part.", features: ["Logo", "Colors & typography", "Short brand guide", "Business cards & stationery", "Social media templates"] },
+        { name: "Brand 360", price: 4500, desc: "Building a brand from scratch.", features: ["Naming & slogan", "Brand strategy", "Full visual identity", "Packaging design", "Detailed brand book"] },
       ],
     },
     {
       id: "production", icon: "camera", label: "Photo & Video",
       packages: [
-        { name: "Photo Session", price: 4000, desc: "Product or venue photography.", features: ["Up to 20 products", "25 edited photos", "Professional lighting & backdrops", "Delivered in 5 days"] },
-        { name: "Reels Pack", price: 6500, popular: true, desc: "Video content for social media.", features: ["4 reels", "Concept & script for each", "Shooting & editing", "Music & subtitles"] },
-        { name: "Ad Film", price: 15000, desc: "A professional ad for your brand.", features: ["Concept & script", "Full shoot day", "Editing & color grading", "Motion graphics", "Cuts for every platform"] },
+        { name: "Photo Session", price: 800, desc: "Product or venue photography.", features: ["Up to 20 products", "25 edited photos", "Professional lighting & backdrops", "Delivered in 5 days"] },
+        { name: "Reels Pack", price: 1200, popular: true, desc: "Video content for social media.", features: ["4 reels", "Concept & script for each", "Shooting & editing", "Music & subtitles"] },
+        { name: "Ad Film", price: 3000, desc: "A professional ad for your brand.", features: ["Concept & script", "Full shoot day", "Editing & color grading", "Motion graphics", "Cuts for every platform"] },
       ],
     },
   ],
@@ -159,7 +159,7 @@ export const en: Content = {
     { q: "How much does it cost?", a: "It depends on the project size. Check our packages for starting prices, or message us on WhatsApp or email and we'll send a quote within 24 hours." },
     { q: "How long does a project take?", a: "A landing page takes 5–7 days, a full website 2–4 weeks, and apps depend on scope. We agree on a clear timeline before we start." },
     { q: "Can I combine several services?", a: "Absolutely — and it's the better option. We offer bundles (website + social + ads) at a better price." },
-    { q: "Do you work with clients outside Egypt?", a: "Yes, we work online with clients in Egypt, the Gulf and anywhere else." },
+    { q: "Do you work with clients outside the UAE?", a: "Yes — we're based in the UAE and also work online with clients across the Gulf, Egypt and anywhere else." },
     { q: "Is there support after delivery?", a: "Every project comes with a free support period, followed by optional monthly maintenance plans." },
   ],
 };

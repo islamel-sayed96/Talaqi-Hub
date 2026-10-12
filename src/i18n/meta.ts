@@ -18,7 +18,7 @@ export function pageMeta(locale: Locale, path: string, title: string | null, des
       title: full,
       description,
       siteName: SITE.name[locale],
-      locale: locale === "ar" ? "ar_EG" : "en_US",
+      locale: locale === "ar" ? "ar_AE" : "en_US",
       url: localePath(locale, path),
     },
   };
