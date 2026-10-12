@@ -122,7 +122,7 @@ export default function ContactForm({ locale }: { locale: Locale }) {
         <button type="submit" className="btn btn--wa">{t.sendWa}</button>
         <button type="button" className="btn btn--primary" onClick={sendEmail}>{t.sendEmail}</button>
       </div>
-      <p className="form__note">{t.note}</p>
+      <p className="form__note"><span className="nego-chip">{UI[locale].negotiable.chip}</span> {t.note}</p>
     </form>
   );
 }

@@ -2,22 +2,26 @@ import Link from "next/link";
 import { localePath, type Locale } from "@/i18n/config";
 import { UI } from "@/i18n/ui";
 import { CONTENT } from "@/data/content";
-import type { IconName } from "@/data/icons";
+import type { BrandName } from "@/data/brandIcons";
+import BrandIcon from "@/components/BrandIcon";
+import { Negotiable, Offers } from "@/components/Promo";
 import Icon from "@/components/Icon";
 import { LogoMark } from "@/components/Logo";
 import PackagesExplorer from "@/components/PackagesExplorer";
 import { Cta, Faq, Marquee, Process, ProjectCard, SectionHead, ServiceCard, Stats, Team, Testimonials, Title, WhatsAppButton } from "@/components/Sections";
 
-const OUTER: { icon: IconName; style: React.CSSProperties }[] = [
-  { icon: "code", style: { top: -32, left: "calc(50% - 32px)" } },
-  { icon: "camera", style: { bottom: -32, left: "calc(50% - 32px)" } },
-  { icon: "megaphone", style: { top: "calc(50% - 32px)", left: -32 } },
-  { icon: "mobile", style: { top: "calc(50% - 32px)", right: -32 } },
+// Platforms we work on, orbiting the hub.
+const OUTER: { icon: BrandName; style: React.CSSProperties }[] = [
+  { icon: "facebook", style: { top: -32, left: "calc(50% - 32px)" } },
+  { icon: "tiktok", style: { bottom: -32, left: "calc(50% - 32px)" } },
+  { icon: "instagram", style: { top: "calc(50% - 32px)", left: -32 } },
+  { icon: "youtube", style: { top: "calc(50% - 32px)", right: -32 } },
 ];
-const INNER: { icon: IconName; style: React.CSSProperties }[] = [
-  { icon: "layout", style: { top: "8%", left: "8%" } },
-  { icon: "film", style: { bottom: "8%", right: "8%" } },
-  { icon: "target", style: { top: "8%", right: "8%" } },
+const INNER: { icon: BrandName; style: React.CSSProperties }[] = [
+  { icon: "whatsapp", style: { top: "8%", left: "8%" } },
+  { icon: "googleads", style: { bottom: "8%", right: "8%" } },
+  { icon: "snapchat", style: { top: "8%", right: "8%" } },
+  { icon: "meta", style: { bottom: "8%", left: "8%" } },
 ];
 
 export default function Home({ locale }: { locale: Locale }) {
@@ -50,10 +54,10 @@ export default function Home({ locale }: { locale: Locale }) {
           </div>
           <div className="hero__visual" aria-hidden="true">
             <div className="orbit">
-              {OUTER.map((o) => <span key={o.icon} className="orbit__item" style={o.style}><Icon name={o.icon} /></span>)}
+              {OUTER.map((o) => <span key={o.icon} className={`orbit__item orbit__item--${o.icon}`} style={o.style}><BrandIcon name={o.icon} mono={o.icon === "snapchat"} /></span>)}
             </div>
             <div className="orbit orbit--2">
-              {INNER.map((o) => <span key={o.icon} className="orbit__item" style={o.style}><Icon name={o.icon} /></span>)}
+              {INNER.map((o) => <span key={o.icon} className={`orbit__item orbit__item--${o.icon}`} style={o.style}><BrandIcon name={o.icon} mono={o.icon === "snapchat"} /></span>)}
             </div>
             <div className="hero__core"><LogoMark className="" plain /></div>
           </div>
@@ -61,6 +65,10 @@ export default function Home({ locale }: { locale: Locale }) {
       </section>
 
       <Marquee locale={locale} />
+
+      <section className="section section--offers">
+        <div className="container"><Offers locale={locale} /></div>
+      </section>
 
       <section className="section" id="services">
         <div className="container">
@@ -104,6 +112,7 @@ export default function Home({ locale }: { locale: Locale }) {
           <div style={{ textAlign: "center", marginTop: 44 }}>
             <Link href={L("/packages/")} className="btn btn--ghost">{h.allPackages} <Icon name="arrow" dir /></Link>
           </div>
+          <div style={{ marginTop: 70 }}><Negotiable locale={locale} /></div>
         </div>
       </section>
 

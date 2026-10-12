@@ -44,6 +44,7 @@ export default function PackagesExplorer({ locale, initial = 0 }: { locale: Loca
             >
               {t.choose}
             </a>
+            <span className="pkg__nego">{UI[locale].negotiable.chip} ✓</span>
           </div>
         ))}
       </div>

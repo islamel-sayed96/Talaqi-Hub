@@ -16,20 +16,27 @@ export type TeamMember = { name: string; role: string; bio: string; photo?: stri
  */
 export type Project = {
   title: string;
-  client?: string;
+  subtitle?: string;
+  desc: string;
   cat: CategoryId;
   tags: string[];
   year?: string;
   image?: string;
   hue: number;
   link?: string;
+  /** Button text for the link; defaults to "Visit site". */
+  linkLabel?: string;
 };
+
+/** Limited-time offer shown in the top bar, on the home page and on /packages/. */
+export type Offer = { id: string; icon: IconName; brand?: "meta"; title: string; desc: string; price: number; period?: string; features: string[]; waText: string };
 
 export type Content = {
   categories: { id: "all" | CategoryId; label: string }[];
   services: Service[];
   process: { n: string; title: string; text: string }[];
   stats: { value: number; suffix: string; label: string }[];
+  offers: Offer[];
   packages: PackageGroup[];
   team: TeamMember[];
   work: Project[];

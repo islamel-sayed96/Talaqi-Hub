@@ -6,7 +6,11 @@ import { NAV, SITE, waLink, DEFAULT_WA_TEXT } from "@/data/site";
 import Logo from "./Logo";
 import WhatsAppIcon from "./WhatsAppIcon";
 
-const SOCIAL_LABELS: Record<string, string> = { facebook: "Fb", instagram: "Ig", tiktok: "Tk", linkedin: "In", behance: "Be" };
+import BrandIcon from "./BrandIcon";
+import { BRAND_ICONS, type BrandName } from "@/data/brandIcons";
+
+// LinkedIn isn't in Simple Icons (trademark), so it falls back to a text label.
+const TEXT_LABELS: Record<string, string> = { linkedin: "in" };
 
 export default function Footer({ locale }: { locale: Locale }) {
   const t = UI[locale];
@@ -23,7 +27,9 @@ export default function Footer({ locale }: { locale: Locale }) {
                 {Object.entries(SITE.social)
                   .filter(([, url]) => url)
                   .map(([k, url]) => (
-                    <a key={k} href={url} target="_blank" rel="noopener noreferrer" aria-label={k}>{SOCIAL_LABELS[k] ?? k}</a>
+                    <a key={k} href={url} target="_blank" rel="noopener noreferrer" aria-label={k}>
+                      {k in BRAND_ICONS ? <BrandIcon name={k as BrandName} mono /> : TEXT_LABELS[k] ?? k}
+                    </a>
                   ))}
               </div>
             </div>

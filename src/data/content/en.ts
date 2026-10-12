@@ -76,6 +76,25 @@ export const en: Content = {
     { value: 5, suffix: "+", label: "Years of experience" },
   ],
 
+  offers: [
+    {
+      id: "web-offer", icon: "code",
+      title: "Your website",
+      desc: "Get online with a professional website at a price you won't see again.",
+      price: 499,
+      features: ["Modern, mobile-friendly design", "WhatsApp button & contact form", "Social media links", "Fast delivery"],
+      waText: "Hi, I'd like the website offer starting from 499",
+    },
+    {
+      id: "meta-offer", icon: "target", brand: "meta",
+      title: "Meta ad campaigns + management",
+      desc: "Facebook & Instagram ads we set up, monitor and optimize until they deliver.",
+      price: 999,
+      features: ["Campaign setup & targeting", "Ad creative design", "Ongoing monitoring & optimization", "Results report"],
+      waText: "Hi, I'd like the Meta ad campaigns offer starting from 999",
+    },
+  ],
+
   packages: [
     {
       id: "social", icon: "megaphone", label: "Social Media",
@@ -121,12 +140,13 @@ export const en: Content = {
   ],
 
   work: [
-    { title: "Fashion Store", cat: "tech", tags: ["E-commerce", "Shopify"], year: "2025", hue: 265 },
-    { title: "Burger Restaurant", cat: "production", tags: ["Photography", "Social media"], year: "2025", hue: 20 },
-    { title: "Delivery App", cat: "design", tags: ["UI/UX", "Mobile app"], year: "2024", hue: 190 },
-    { title: "Dental Clinic", cat: "marketing", tags: ["Website", "SEO"], year: "2024", hue: 160 },
-    { title: "Coffee Brand", cat: "design", tags: ["Identity", "Packaging"], year: "2025", hue: 35 },
-    { title: "Real Estate Company", cat: "production", tags: ["Ad film", "Paid ads"], year: "2025", hue: 330 },
+    { title: "Al Bayan Homes", subtitle: "Real estate", desc: "Website development, SEO and paid ad campaign management.", cat: "marketing", tags: ["Website", "SEO", "Paid ads"], hue: 200, link: "https://albyanhomes.com/" },
+    { title: "NMC", subtitle: "UAE", desc: "Website development, SEO, social media page management and ad campaign management.", cat: "marketing", tags: ["Website", "SEO", "Social media", "Ads"], hue: 250, link: "https://nmc.ae/" },
+    { title: "Luvalle Beauty Center", subtitle: "Beauty center", desc: "Website, SEO, campaign & page management, CRM systems and operations.", cat: "tech", tags: ["Website", "SEO", "CRM", "Operations"], hue: 330, link: "https://luvallebeautycenter.com/" },
+    { title: "Al Bayan Institute", subtitle: "Education", desc: "Website, SEO, campaign & page management, CRM systems and administrative operations.", cat: "tech", tags: ["Website", "SEO", "CRM", "Operations"], hue: 160, link: "https://albyan.institute/" },
+    { title: "NTC Emirates", subtitle: "UAE", desc: "Ad campaign management, SEO and social media page management.", cat: "marketing", tags: ["Ads", "SEO", "Social media"], hue: 20, link: "https://www.instagram.com/ntcemirates.ae/", linkLabel: "View page" },
+    { title: "Rahhaal", subtitle: "Travel", desc: "Full website design and development.", cat: "tech", tags: ["Design", "Web development"], hue: 40, link: "https://rahhaal.com/" },
+    { title: "Darbna", subtitle: "Online course platform", desc: "A complete learning platform: video courses, interactive quizzes, certificates, live sessions and subscriptions — built with Laravel and React.", cat: "tech", tags: ["Laravel", "React", "E-learning"], hue: 275, link: "https://github.com/islamel-sayed96/Darbna", linkLabel: "View on GitHub" },
   ],
 
   testimonials: [

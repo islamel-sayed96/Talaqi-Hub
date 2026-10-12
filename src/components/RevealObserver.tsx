@@ -68,7 +68,7 @@ export default function RevealObserver() {
 
     if (location.hash) {
       const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-      if (target) setTimeout(() => target.scrollIntoView({ behavior: "smooth", block: "center" }), 150);
+      if (target) setTimeout(() => target.scrollIntoView({ behavior: "smooth", block: "start" }), 150);
     }
     return () => {
       io.disconnect();

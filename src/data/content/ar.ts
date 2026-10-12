@@ -157,6 +157,26 @@ export const ar: Content = {
   { value: 5, suffix: "+", label: "سنين خبرة" },
 ],
 
+  // العروض الخاصة (بتظهر في الشريط اللي فوق، والرئيسية، وصفحة الباقات)
+  offers: [
+    {
+      id: "web-offer", icon: "code",
+      title: "موقعك الإلكتروني",
+      desc: "ابدأ وجودك أونلاين بموقع احترافي بسعر مش هيتكرر.",
+      price: 499,
+      features: ["تصميم عصري متجاوب مع الموبايل", "زرار واتساب ونموذج تواصل", "ربط السوشيال ميديا", "تسليم سريع"],
+      waText: "مرحبا، عايز أستفيد من عرض الموقع الإلكتروني اللي بيبدأ من 499",
+    },
+    {
+      id: "meta-offer", icon: "target", brand: "meta",
+      title: "حملات إعلانية على ميتا + متابعة",
+      desc: "إعلانات فيسبوك وإنستجرام بنعملها ونتابعها ونحسّنها لحد ما تجيب نتيجة.",
+      price: 999,
+      features: ["إعداد الحملة والاستهداف", "تصميم الإعلان", "متابعة وتحسين مستمر", "تقرير بالنتائج"],
+      waText: "مرحبا، عايز أستفيد من عرض حملات ميتا اللي بيبدأ من 999",
+    },
+  ],
+
   // الأسعار بالجنيه المصري (تقديرية — عدّلها براحتك). العملة نفسها في src/data/site.ts
   packages: [
     {
@@ -203,14 +223,15 @@ export const ar: Content = {
     { name: "اسم عضو الفريق", role: "مصور ومونتير", bio: "بيصور ويعمل مونتاج الفيديوهات والريلز." },
   ],
 
-  // الأعمال — بدّلها بمشاريعك الحقيقية (الصور في public/work/)
+  // الأعمال — من البورتفوليو. ممكن تضيف صورة لكل مشروع: حطها في public/work/ واكتب image: "/work/اسم-الصورة.jpg"
   work: [
-    { title: "متجر أزياء", cat: "tech", tags: ["متجر إلكتروني", "Shopify"], year: "2025", hue: 265 },
-    { title: "مطعم برجر", cat: "production", tags: ["تصوير", "سوشيال ميديا"], year: "2025", hue: 20 },
-    { title: "تطبيق توصيل", cat: "design", tags: ["UI/UX", "تطبيق موبايل"], year: "2024", hue: 190 },
-    { title: "عيادة أسنان", cat: "marketing", tags: ["موقع", "SEO"], year: "2024", hue: 160 },
-    { title: "علامة قهوة", cat: "design", tags: ["هوية بصرية", "تغليف"], year: "2025", hue: 35 },
-    { title: "شركة عقارات", cat: "production", tags: ["فيديو إعلاني", "إعلانات ممولة"], year: "2025", hue: 330 },
+    { title: "Al Bayan Homes", subtitle: "عقارات", desc: "تطوير الموقع الإلكتروني، تحسين محركات البحث (SEO)، وإدارة الحملات الإعلانية الممولة.", cat: "marketing", tags: ["موقع", "SEO", "إعلانات ممولة"], hue: 200, link: "https://albyanhomes.com/" },
+    { title: "NMC", subtitle: "الإمارات", desc: "تطوير الموقع الإلكتروني، SEO، إدارة صفحات السوشيال ميديا، وإدارة الحملات الإعلانية.", cat: "marketing", tags: ["موقع", "SEO", "سوشيال ميديا", "إعلانات"], hue: 250, link: "https://nmc.ae/" },
+    { title: "Luvalle Beauty Center", subtitle: "مركز تجميل", desc: "الموقع الإلكتروني، SEO، إدارة الحملات والصفحات، أنظمة CRM، وتنظيم العمل.", cat: "tech", tags: ["موقع", "SEO", "CRM", "تشغيل"], hue: 330, link: "https://luvallebeautycenter.com/" },
+    { title: "Al Bayan Institute", subtitle: "معهد تعليمي", desc: "الموقع الإلكتروني، SEO، إدارة الحملات والصفحات، أنظمة CRM، وتنظيم العمل الإداري.", cat: "tech", tags: ["موقع", "SEO", "CRM", "تشغيل"], hue: 160, link: "https://albyan.institute/" },
+    { title: "NTC Emirates", subtitle: "الإمارات", desc: "إدارة الحملات الإعلانية، SEO، وإدارة صفحات السوشيال ميديا.", cat: "marketing", tags: ["إعلانات", "SEO", "سوشيال ميديا"], hue: 20, link: "https://www.instagram.com/ntcemirates.ae/", linkLabel: "زيارة الصفحة" },
+    { title: "Rahhaal", subtitle: "رحّال", desc: "تصميم وتطوير الموقع الإلكتروني بالكامل.", cat: "tech", tags: ["تصميم", "تطوير مواقع"], hue: 40, link: "https://rahhaal.com/" },
+    { title: "دربنا", subtitle: "منصة كورسات أونلاين", desc: "منصة تعليمية متكاملة: كورسات فيديو، اختبارات تفاعلية، شهادات، حصص مباشرة، واشتراكات — مبنية بـ Laravel وReact.", cat: "tech", tags: ["Laravel", "React", "منصة تعليمية"], hue: 275, link: "https://github.com/islamel-sayed96/Darbna", linkLabel: "شوف المشروع على GitHub" },
   ],
 
   testimonials: [

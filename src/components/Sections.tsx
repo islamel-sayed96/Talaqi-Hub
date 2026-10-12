@@ -107,22 +107,24 @@ export function Process({ locale }: { locale: Locale }) {
 export function ProjectCard({ p, locale, hidden = false }: { p: Project; locale: Locale; hidden?: boolean }) {
   const art = p.image
     ? { backgroundImage: `url(${p.image})` }
-    : { background: `linear-gradient(135deg,hsl(${p.hue} 75% 55%),hsl(${(p.hue + 50) % 360} 80% 42%))` };
-  const inner = (
-    <>
-      <div className={`work__art${p.image ? "" : " work__art--grad"}`} style={art} />
-      {p.year && <span className="work__year">{p.year}</span>}
-      <div className="work__info">
-        <h3>{p.title}</h3>
-        <div className="work__tags">{p.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+    : { background: `linear-gradient(135deg,hsl(${p.hue} 70% 52%),hsl(${(p.hue + 45) % 360} 75% 38%))` };
+  return (
+    <article className="project reveal" style={hidden ? { display: "none" } : undefined}>
+      <div className="project__art" style={art}>
+        {!p.image && <span className="project__mono" dir="auto">{p.title}</span>}
+        {p.subtitle && <span className="project__sub">{p.subtitle}</span>}
       </div>
-    </>
-  );
-  const style = hidden ? { display: "none" } : undefined;
-  return p.link ? (
-    <a className="work reveal" href={p.link} target="_blank" rel="noopener noreferrer" style={style} aria-label={`${p.title} — ${UI[locale].work.view}`}>{inner}</a>
-  ) : (
-    <div className="work reveal" style={style}>{inner}</div>
+      <div className="project__body">
+        <h3>{p.title}</h3>
+        <p>{p.desc}</p>
+        <div className="project__tags">{p.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
+        {p.link && (
+          <a className="card__link" href={p.link} target="_blank" rel="noopener noreferrer">
+            {p.linkLabel ?? UI[locale].work.view} <Icon name="external" />
+          </a>
+        )}
+      </div>
+    </article>
   );
 }
 

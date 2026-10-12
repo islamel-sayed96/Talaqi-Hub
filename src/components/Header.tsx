@@ -10,6 +10,7 @@ import Icon from "./Icon";
 import Logo from "./Logo";
 import ThemeToggle from "./ThemeToggle";
 import LangSwitch from "./LangSwitch";
+import { topbarText } from "@/i18n/topbar";
 
 export default function Header({ locale }: { locale: Locale }) {
   const t = UI[locale];
@@ -31,6 +32,11 @@ export default function Header({ locale }: { locale: Locale }) {
 
   return (
     <header className={`header${scrolled || open ? " is-scrolled" : ""}`}>
+      <Link href={L("/packages/#offers")} className="topbar">
+        <span className="topbar__long">{topbarText(locale, "text")}</span>
+        <span className="topbar__short">{topbarText(locale, "short")}</span>
+        <span className="topbar__cta">{t.topbar.cta} <Icon name="arrow" dir size={14} /></span>
+      </Link>
       <div className="container header__inner">
         <Link href={L("/")} aria-label={t.nav.home}><Logo /></Link>
         <nav className={`nav${open ? " is-open" : ""}`} id="nav" aria-label={t.a11y.mainNav}>
