@@ -30,12 +30,28 @@ npm install
 npm run dev      # http://localhost:3000
 ```
 
-## البناء والرفع
+## الرفع على Hostinger
+
+> ⚠️ متترفعش ملفات الريبو نفسها (`src/`, `package.json`...) — الهوست مش هيلاقي `index.html` وهيطلع **403 Forbidden**.
+> المطلوب يترفع هو الموقع **بعد البناء**.
+
+### الطريقة 1 (أوتوماتيك — الأفضل): Git deployment على برانش `hostinger`
+كل push على `main` بيبني الموقع تلقائيًا (GitHub Actions) ويحط الملفات الجاهزة على برانش **`hostinger`**.
+1. hPanel ← **Websites ← Advanced ← Git**.
+2. Repository: `https://github.com/islamel-sayed96/Talaqi-Hub.git` — Branch: **`hostinger`** — Directory: فاضي (يعني `public_html`).
+   - لازم `public_html` يكون **فاضي** قبل ما تعمل Create (امسح أي ملفات فيه، زي `default.php`).
+3. اعمل **Deploy**، وفعّل **Auto Deployment** (Webhook) عشان أي تعديل ينزل لوحده.
+
+### الطريقة 2 (يدوي)
 ```bash
+npm install
 npm run build    # بيطلّع الموقع جاهز في فولدر out/
 ```
-- **Hostinger / أي استضافة عادية:** ارفع **محتوى** فولدر `out/` (مش الفولدر نفسه) جوه `public_html`. ملف `.htaccess` بيترفع معاه تلقائيًا.
-- **Vercel / Netlify:** اربط الريبو — Build command: `npm run build`، Output directory: `out`.
+ارفع **محتوى** فولدر `out/` (مش الفولدر نفسه) جوه `public_html` — لازم `index.html` يبقى مباشرة جوه `public_html`.
+أو نزّل برانش `hostinger` كـ ZIP من GitHub وارفعه وفكّه في `public_html`.
+
+### Vercel / Netlify
+اربط الريبو — Build command: `npm run build`، Output directory: `out`.
 
 ## الهيكل
 ```
