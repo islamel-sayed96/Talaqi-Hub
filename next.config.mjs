@@ -5,6 +5,8 @@ const nextConfig = {
   output: "export",
   trailingSlash: true,
   images: { unoptimized: true },
+  // Lets src/app/global-not-found.tsx render 404.html with its own <html> (Arabic + English use separate root layouts).
+  experimental: { globalNotFound: true },
 };
 
 export default nextConfig;

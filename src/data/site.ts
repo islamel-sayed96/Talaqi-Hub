@@ -1,18 +1,23 @@
 /*
- * إعدادات الموقع — عدّل هنا بس وكل الصفحات هتتحدّث تلقائيًا.
+ * بيانات الشركة — عدّل هنا بس وكل الصفحات (عربي وإنجليزي) هتتحدّث تلقائيًا.
  */
+import type { Locale } from "@/i18n/config";
+
 export const SITE = {
-  name: "تلاقي هب", // اسم الشركة
-  nameEn: "TALAQI HUB", // اسم الشركة بالإنجليزي (اللوجو)
-  tagline: "وكالة تسويق رقمي وإنتاج إبداعي",
+  brand: "Talaqi Hub", // الاسم في اللوجو (ثابت في اللغتين)
+  name: { ar: "تلاقي هب", en: "Talaqi Hub" },
+  tagline: { ar: "وكالة تسويق رقمي وإنتاج إبداعي", en: "Digital marketing & creative production agency" },
   url: "https://example.com", // دومين الموقع بعد الرفع
 
   // رقم الواتساب بالصيغة الدولية بدون + (مثال مصر: 201001234567)
   whatsapp: "201000000000",
   email: "hello@example.com",
   phone: "+20 100 000 0000",
-  address: "القاهرة، مصر",
-  hours: "السبت – الخميس، 10 ص – 7 م",
+  address: { ar: "القاهرة، مصر", en: "Cairo, Egypt" },
+  hours: { ar: "السبت – الخميس، 10 ص – 7 م", en: "Sat – Thu, 10 AM – 7 PM" },
+
+  // عملة الباقات
+  currency: { ar: "ج.م", en: "EGP" },
 
   social: {
     facebook: "#",
@@ -26,13 +31,20 @@ export const SITE = {
 export const waLink = (text = "") =>
   `https://wa.me/${SITE.whatsapp}${text ? "?text=" + encodeURIComponent(text) : ""}`;
 
-export const DEFAULT_WA_TEXT = "مرحبا، عايز أستفسر عن خدماتكم";
+export const DEFAULT_WA_TEXT: Record<Locale, string> = {
+  ar: "مرحبا، عايز أستفسر عن خدماتكم",
+  en: "Hi, I'd like to ask about your services",
+};
 
-// روابط القائمة الرئيسية (الهيدر والفوتر)
+export const formatPrice = (n: number, locale: Locale) =>
+  `${n.toLocaleString("en-US")} ${SITE.currency[locale]}`;
+
+/** Main navigation: [key in UI.nav, path without locale prefix]. */
 export const NAV = [
-  { href: "/", label: "الرئيسية" },
-  { href: "/services/", label: "خدماتنا" },
-  { href: "/#work", label: "أعمالنا" },
-  { href: "/about/", label: "من نحن" },
-  { href: "/contact/", label: "تواصل معنا" },
-];
+  ["home", "/"],
+  ["services", "/services/"],
+  ["packages", "/packages/"],
+  ["work", "/work/"],
+  ["about", "/about/"],
+  ["contact", "/contact/"],
+] as const;

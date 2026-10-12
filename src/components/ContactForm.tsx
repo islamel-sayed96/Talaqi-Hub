@@ -2,25 +2,19 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { SERVICES } from "@/data/content";
+import type { Locale } from "@/i18n/config";
+import { UI } from "@/i18n/ui";
+import { CONTENT } from "@/data/content";
 import { SITE, waLink } from "@/data/site";
-
-const BUDGETS = [
-  "أقل من 10,000 ج.م",
-  "10,000 – 30,000 ج.م",
-  "30,000 – 75,000 ج.م",
-  "أكتر من 75,000 ج.م",
-  "مش متأكد — محتاج استشارة",
-];
 
 type Errors = Partial<Record<"name" | "phone" | "services" | "message", boolean>>;
 
-export default function ContactForm() {
+export default function ContactForm({ locale }: { locale: Locale }) {
+  const t = UI[locale].form;
+  const services = CONTENT[locale].services;
   const preselected = useSearchParams().get("service");
   const [values, setValues] = useState({ name: "", phone: "", company: "", budget: "", message: "" });
-  const [services, setServices] = useState<string[]>(() =>
-    SERVICES.filter((s) => s.id === preselected).map((s) => s.title),
-  );
+  const [picked, setPicked] = useState<string[]>(() => services.filter((s) => s.id === preselected).map((s) => s.title));
   const [errors, setErrors] = useState<Errors>({});
 
   const set = (k: keyof typeof values) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -28,8 +22,8 @@ export default function ContactForm() {
     setErrors((er) => ({ ...er, [k]: false }));
   };
 
-  const toggleService = (title: string) => {
-    setServices((cur) => (cur.includes(title) ? cur.filter((t) => t !== title) : [...cur, title]));
+  const toggle = (title: string) => {
+    setPicked((cur) => (cur.includes(title) ? cur.filter((x) => x !== title) : [...cur, title]));
     setErrors((er) => ({ ...er, services: false }));
   };
 
@@ -37,7 +31,7 @@ export default function ContactForm() {
     const next: Errors = {
       name: !values.name.trim(),
       phone: !/^[+\d\s()-]{7,}$/.test(values.phone.trim()),
-      services: services.length === 0,
+      services: picked.length === 0,
       message: !values.message.trim(),
     };
     setErrors(next);
@@ -48,14 +42,14 @@ export default function ContactForm() {
 
   const message = () =>
     [
-      `مرحبا ${SITE.name} 👋`,
-      `الاسم: ${values.name}`,
-      `الهاتف: ${values.phone}`,
-      values.company ? `الشركة / النشاط: ${values.company}` : null,
-      `الخدمات المطلوبة: ${services.join("، ")}`,
-      values.budget ? `الميزانية التقريبية: ${values.budget}` : null,
+      `${t.msg.hello} ${SITE.name[locale]} 👋`,
+      `${t.msg.name}: ${values.name}`,
+      `${t.msg.phone}: ${values.phone}`,
+      values.company ? `${t.msg.company}: ${values.company}` : null,
+      `${t.msg.services}: ${picked.join(t.sep)}`,
+      values.budget ? `${t.msg.budget}: ${values.budget}` : null,
       "",
-      "التفاصيل:",
+      `${t.msg.details}:`,
       values.message,
     ]
       .filter((l): l is string => typeof l === "string")
@@ -67,75 +61,68 @@ export default function ContactForm() {
 
   const sendEmail = () => {
     if (!validate()) return;
-    const subject = `طلب خدمة من ${values.name}`;
+    const subject = `${t.msg.subject} ${values.name}`;
     window.location.href = `mailto:${SITE.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message())}`;
   };
 
   const field = (k: keyof Errors) => `field${errors[k] ? " has-error" : ""}`;
 
   return (
-    <form
-      className="form reveal"
-      noValidate
-      onSubmit={(e) => {
-        e.preventDefault();
-        sendWhatsApp();
-      }}
-    >
-      <h3>اطلب عرض سعر مجاني</h3>
-      <p className="muted">اختار الخدمات اللي محتاجها واكتب تفاصيل بسيطة عن مشروعك.</p>
+    <form className="form reveal" noValidate onSubmit={(e) => { e.preventDefault(); sendWhatsApp(); }}>
+      <h3>{t.title}</h3>
+      <p className="muted">{t.intro}</p>
 
       <div className="form__row">
         <div className={field("name")} id="f-name">
-          <label htmlFor="name">الاسم *</label>
+          <label htmlFor="name">{t.name}</label>
           <input id="name" type="text" autoComplete="name" value={values.name} onChange={set("name")} />
-          <div className="field__err">من فضلك اكتب اسمك</div>
+          <div className="field__err">{t.nameErr}</div>
         </div>
         <div className={field("phone")} id="f-phone">
-          <label htmlFor="phone">رقم الموبايل / واتساب *</label>
+          <label htmlFor="phone">{t.phone}</label>
           <input id="phone" type="tel" dir="ltr" autoComplete="tel" value={values.phone} onChange={set("phone")} />
-          <div className="field__err">اكتب رقم صحيح</div>
+          <div className="field__err">{t.phoneErr}</div>
         </div>
       </div>
 
       <div className="form__row">
         <div className="field">
-          <label htmlFor="company">اسم الشركة / النشاط</label>
+          <label htmlFor="company">{t.company}</label>
           <input id="company" type="text" autoComplete="organization" value={values.company} onChange={set("company")} />
         </div>
         <div className="field">
-          <label htmlFor="budget">الميزانية التقريبية</label>
+          <label htmlFor="budget">{t.budget}</label>
           <select id="budget" value={values.budget} onChange={set("budget")}>
-            <option value="">اختار (اختياري)</option>
-            {BUDGETS.map((b) => <option key={b}>{b}</option>)}
+            <option value="">{t.budgetNone}</option>
+            {t.budgets.map((b) => <option key={b}>{b}</option>)}
           </select>
         </div>
       </div>
 
       <div className={field("services")} id="f-services">
-        <label>الخدمات المطلوبة *</label>
+        <label>{t.services}</label>
         <div className="checks">
-          {SERVICES.map((s) => (
+          {services.map((s) => (
             <label key={s.id}>
-              <input type="checkbox" checked={services.includes(s.title)} onChange={() => toggleService(s.title)} />
+              <input type="checkbox" checked={picked.includes(s.title)} onChange={() => toggle(s.title)} />
               <span>{s.title}</span>
             </label>
           ))}
         </div>
-        <div className="field__err">اختار خدمة واحدة على الأقل</div>
+        <div className="field__err">{t.servicesErr}</div>
       </div>
 
       <div className={field("message")} id="f-message">
-        <label htmlFor="message">تفاصيل المشروع *</label>
-        <textarea id="message" placeholder="احكيلنا باختصار عن مشروعك وهدفك..." value={values.message} onChange={set("message")} />
-        <div className="field__err">اكتب تفاصيل بسيطة عن مشروعك</div>
+        <label htmlFor="message">{t.message}</label>
+        <textarea id="message" placeholder={t.messagePh} value={values.message} onChange={set("message")} />
+        <div className="field__err">{t.messageErr}</div>
       </div>
 
       <div className="form__actions">
-        <button type="submit" className="btn btn--wa">إرسال عبر واتساب</button>
-        <button type="button" className="btn btn--primary" onClick={sendEmail}>إرسال عبر الإيميل</button>
+        <button type="submit" className="btn btn--wa">{t.sendWa}</button>
+        <button type="button" className="btn btn--primary" onClick={sendEmail}>{t.sendEmail}</button>
       </div>
-      <p className="form__note">بياناتك بتتبعت لنا مباشرة ومش بنشاركها مع أي حد.</p>
+      <p className="form__note">{t.note}</p>
     </form>
   );
 }

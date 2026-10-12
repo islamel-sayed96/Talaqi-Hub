@@ -3,11 +3,17 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { NAV, SITE } from "@/data/site";
+import { localePath, stripLocale, type Locale } from "@/i18n/config";
+import { UI } from "@/i18n/ui";
+import { NAV } from "@/data/site";
+import Icon from "./Icon";
+import Logo from "./Logo";
+import ThemeToggle from "./ThemeToggle";
+import LangSwitch from "./LangSwitch";
 
-
-export default function Header() {
-  const pathname = usePathname();
+export default function Header({ locale }: { locale: Locale }) {
+  const t = UI[locale];
+  const path = stripLocale(usePathname() || "/");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -18,41 +24,35 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => setOpen(false), [pathname]);
+  useEffect(() => setOpen(false), [path]);
 
-  const isActive = (href: string) => !href.includes("#") && (href === "/" ? pathname === "/" : pathname.startsWith(href));
+  const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+  const L = (p: string) => localePath(locale, p);
 
   return (
     <header className={`header${scrolled || open ? " is-scrolled" : ""}`}>
       <div className="container header__inner">
-        <Link href="/" className="logo" aria-label={SITE.name}>
-          <span className="logo__mark">{SITE.nameEn.charAt(0)}</span>
-          <span>{SITE.nameEn}</span>
-        </Link>
-        <nav className={`nav${open ? " is-open" : ""}`} id="nav" aria-label="القائمة الرئيسية">
-          {NAV.map((n) => (
-            <Link key={n.href} href={n.href} className={isActive(n.href) ? "is-active" : ""} onClick={() => setOpen(false)}>
-              {n.label}
+        <Link href={L("/")} aria-label={t.nav.home}><Logo /></Link>
+        <nav className={`nav${open ? " is-open" : ""}`} id="nav" aria-label={t.a11y.mainNav}>
+          {NAV.map(([key, href]) => (
+            <Link key={key} href={L(href)} className={isActive(href) ? "is-active" : ""} onClick={() => setOpen(false)}>
+              {t.nav[key]}
             </Link>
           ))}
-          <Link href="/contact/" className="btn btn--primary">اطلب عرض سعر</Link>
+          <Link href={L("/contact/")} className="btn btn--primary">{t.cta.quote}</Link>
         </nav>
-        <div className="header__cta">
-          <Link href="/contact/" className="btn btn--primary">اطلب عرض سعر</Link>
+        <div className="header__tools">
+          <Link href={L("/contact/")} className="btn btn--primary">{t.cta.quote}</Link>
+          <LangSwitch locale={locale} />
+          <ThemeToggle t={t.a11y} />
           <button
-            className="burger"
-            aria-label={open ? "إغلاق القائمة" : "فتح القائمة"}
+            className="tool-btn burger"
+            aria-label={open ? t.a11y.closeMenu : t.a11y.openMenu}
             aria-expanded={open}
             aria-controls="nav"
             onClick={() => setOpen((o) => !o)}
           >
-            <svg className="icon" viewBox="0 0 24 24" aria-hidden="true">
-              {open ? (
-                <><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></>
-              ) : (
-                <><line x1="3" y1="6" x2="21" y2="6" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="18" x2="21" y2="18" /></>
-              )}
-            </svg>
+            <Icon name={open ? "close" : "menu"} />
           </button>
         </div>
       </div>

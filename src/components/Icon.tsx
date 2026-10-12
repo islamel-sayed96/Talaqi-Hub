@@ -1,9 +1,10 @@
 import { ICONS, type IconName } from "@/data/icons";
 
-export default function Icon({ name, className = "icon", size }: { name: IconName; className?: string; size?: number }) {
+/** `dir` marks direction-sensitive icons (arrows) so they flip in English. */
+export default function Icon({ name, className = "", size, dir = false }: { name: IconName; className?: string; size?: number; dir?: boolean }) {
   return (
     <svg
-      className={className}
+      className={`icon${dir ? " icon--dir" : ""}${className ? " " + className : ""}`}
       viewBox="0 0 24 24"
       aria-hidden="true"
       style={size ? { width: size, height: size } : undefined}
